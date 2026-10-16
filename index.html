@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101920">
+  <meta name="description" content="以沈安娜的公开史实为背景、明确标注教学推演的四节点互动剧情。">
+  <title>一纸之间 · 沈安娜互动剧情</title>
+  <link rel="preload" as="image" href="assets/conference_1946.png">
+  <link rel="preload" as="image" href="assets/protagonist.png">
+  <link rel="stylesheet" href="game.css">
+  <script src="game.js" defer></script>
+</head>
+<body>
+  <div class="app" id="app">
+    <div class="scene-image" id="scene-image" aria-hidden="true"></div>
+    <div class="scene-shade" aria-hidden="true"></div>
+
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">隐线 / 1946—1949</span><strong>一纸之间</strong></div>
+      <nav class="chapter-nav" id="chapter-nav" aria-label="剧情节点"></nav>
+      <div class="top-actions">
+        <button class="icon-button" type="button" data-action="sound" id="sound-button" aria-label="切换音效" aria-pressed="true">♪ <span>音效开</span></button>
+        <button class="icon-button" type="button" data-action="timeline">↶ <span>回溯</span></button>
+      </div>
+    </header>
+
+    <section class="hud" id="hud" aria-label="当前状态">
+      <div class="meter pressure"><div class="meter-line"><span>压力值</span><strong id="pressure-number">0</strong></div><div class="meter-track"><i id="pressure-bar"></i></div><small>达到 100，本轮中止</small></div>
+      <div class="meter exposure"><div class="meter-line"><span>暴露风险值</span><strong id="exposure-number">0</strong></div><div class="meter-track"><i id="exposure-bar"></i></div><small>达到 100，本轮中止</small></div>
+      <div class="meter mission"><div class="meter-line"><span>任务完成值</span><strong id="mission-number">0</strong></div><div class="meter-track"><i id="mission-bar"></i></div><small>结尾至少需要 75</small></div>
+    </section>
+
+    <img class="protagonist" id="protagonist" src="assets/protagonist.png" alt="主人公的虚构演绎形象，手持速记本" width="1024" height="1536">
+    <main class="story-panel" id="story" tabindex="-1"></main>
+
+    <footer class="site-footer"><span>史实锚点与教学推演分开呈现。图像为 AI 生成的情境插画，人物并非历史照片。</span><span>四个抉择 · 可回溯 · 自动保存</span></footer>
+
+    <div class="modal-backdrop" id="timeline-modal" hidden>
+      <section class="timeline-panel" role="dialog" aria-modal="true" aria-labelledby="timeline-title">
+        <div class="modal-heading"><div><span class="overline">PATH RECORD</span><h2 id="timeline-title">回看选择</h2></div><button class="icon-button" type="button" data-action="close-timeline" aria-label="关闭回溯面板">×</button></div>
+        <p class="modal-intro">点选已经走过的节点，会清除该节点及之后的选择，重新计算三项数值。</p>
+        <div id="timeline-list"></div>
+        <button class="text-button" type="button" data-action="restart">从头开始</button>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
